@@ -10,9 +10,6 @@ pipeline {
                 echo "${params.GREETING}, deploying to ${params.ENVIRONMENT}!"
             }
         }
- 
-
-    stages {
         stage('Hello') {
             steps {
                 echo 'Hello, Jenkins!'
@@ -30,17 +27,15 @@ pipeline {
                 sh 'echo "build ran at $(date)" > build-log.txt'
                 sh 'cat build-log.txt'
             }
-            
         }
         stage('Show Credential Usage') {
-             steps {
+            steps {
                 withCredentials([usernamePassword(credentialsId: 'github-pat', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASS')]) {
-                sh 'echo "Using credential for user: $GIT_USER"'
+                    sh 'echo "Using credential for user: $GIT_USER"'
+                }
+            }
         }
     }
-}
-    }
-
     post {
         success {
             echo 'Pipeline succeeded!'
@@ -51,6 +46,5 @@ pipeline {
         always {
             echo 'This runs no matter what.'
         }
-  }
+    }
 }
-
