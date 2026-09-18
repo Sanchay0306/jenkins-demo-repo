@@ -1,5 +1,15 @@
 pipeline {
     agent any
+    parameters {
+        string(name: 'GREETING', defaultValue: 'Hello', description: 'Greeting message')
+        choice(name: 'ENVIRONMENT', choices: ['dev', 'staging', 'prod'], description: 'Target environment')
+    }
+    stages {
+        stage('Greet') {
+            steps {
+                echo "${params.GREETING}, deploying to ${params.ENVIRONMENT}!"
+            }
+        }
 
     stages {
         stage('Hello') {
