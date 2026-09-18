@@ -10,6 +10,7 @@ pipeline {
                 echo "${params.GREETING}, deploying to ${params.ENVIRONMENT}!"
             }
         }
+ 
 
     stages {
         stage('Hello') {
