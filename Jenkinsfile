@@ -40,7 +40,19 @@ pipeline {
                 sh 'docker run --rm jenkins-demo:${BUILD_NUMBER}'
     }
 }
+        stage('Docker Push') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
+                sh 'docker tag jenkins-demo:${BUILD_NUMBER} $DOCKER_USER/jenkins-demo:${BUILD_NUMBER}'
+                sh 'docker push $DOCKER_USER/jenkins-demo:${BUILD_NUMBER}'
+        }
+    }
+}
         
+
+
+
         stage('Show Credential Usage') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'github-pat', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASS')]) {
