@@ -28,6 +28,19 @@ pipeline {
                 sh 'cat build-log.txt'
             }
         }
+
+
+        stage('Docker Build') {
+            steps {
+                sh 'docker build -t jenkins-demo:${BUILD_NUMBER} .'
+    }
+}
+        stage('Docker Run Test') {
+            steps {
+                sh 'docker run --rm jenkins-demo:${BUILD_NUMBER}'
+    }
+}
+        
         stage('Show Credential Usage') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'github-pat', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASS')]) {
