@@ -1,27 +1,25 @@
-name:CI
-
+name: CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
-
+    branches: [master]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      -name: Checkout code
-       uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      -name: Print environment info
-       run:  |
-         whoami
-         pwd
-         date
+      - name: Print environment info
+        run: |
+          whoami
+          pwd
+          date
 
-      -name: Create and read a file
-      run: |
-        echo "build ran at $(data)" > build-log.txt
-        cat build-log.tx
+      - name: Create and read a file
+        run: |
+          echo "build ran at $(date)" > build-log.txt
+          cat build-log.txt
