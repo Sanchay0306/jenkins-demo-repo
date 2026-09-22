@@ -23,3 +23,13 @@ jobs:
         run: |
           echo "build ran at $(date)" > build-log.txt
           cat build-log.txt
+
+    test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18, 20, 22]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Simulate version-specific step
+        run: echo "Testing on Node ${{ matrix.node-version }}"    
