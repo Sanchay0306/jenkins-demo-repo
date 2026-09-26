@@ -15,7 +15,7 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::842091916553:role/iam
+          role-to-assume: arn:aws:iam::842091916553:role/iam2
           aws-region: us-east-1
 
       - name: Confirm identity
