@@ -1,0 +1,11 @@
+name: Gated Deploy Test
+
+on: workflow_dispatch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Deploy step
+        run: echo "Deploying now..."
