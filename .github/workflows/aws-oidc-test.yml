@@ -17,6 +17,13 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::842091916553:role/iam
           aws-region: us-east-1
+      - name: Debug OIDC token
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const id_token = await core.getIDToken('sts.amazonaws.com');
+            const payload = JSON.parse(Buffer.from(id_token.split('.')[1], 'base64').toString());
+            console.log(JSON.stringify(payload, null, 2));
 
       - name: Confirm identity
         run: aws sts get-caller-identity
