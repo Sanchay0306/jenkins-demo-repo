@@ -9,24 +9,25 @@ permissions:
 jobs:
   aws-auth:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
-       - name: Debug OIDC token
-         uses: actions/github-script@v7
-         with:
+      - name: Debug OIDC token
+        uses: actions/github-script@v7
+        with:
           script: |
             const id_token = await core.getIDToken('sts.amazonaws.com');
-            const payload = JSON.parse(Buffer.from(id_token.split('.')[1], 'base64').toString());
+            const payload = JSON.parse(
+              Buffer.from(id_token.split('.')[1], 'base64').toString()
+            );
             console.log(JSON.stringify(payload, null, 2));
 
-      
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::842091916553:role/iam
           aws-region: us-east-1
-     
 
       - name: Confirm identity
         run: aws sts get-caller-identity
