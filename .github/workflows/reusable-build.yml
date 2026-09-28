@@ -1,0 +1,22 @@
+name: reusable Build
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+
+    secrets:
+      GH_TOKEN:
+        required: true
+
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      -uses: action/checkout@v4
+      -name: Build for ${{ inputs.environment }}
+      -run: echo "Building for ${{ inputs.environment }}"
