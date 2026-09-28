@@ -1,0 +1,13 @@
+name: main pipeline
+
+
+on: push
+
+
+jobs:
+  call-reusable:
+    uses: ./.github/workflows/reusable-build.yml
+    with: 
+      environment: staging
+    secrets:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
