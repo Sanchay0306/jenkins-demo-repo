@@ -1,0 +1,13 @@
+name: Self-Hosted Runner Test
+
+on: workflow_dispatch
+
+jobs:
+  self-hosted-job:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          echo "Running on my own machine!"
+          whoami
+          hostname
