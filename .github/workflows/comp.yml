@@ -1,0 +1,9 @@
+name: main comp
+
+jobs:
+  call-comp:
+    steps:
+        - uses: actions/checkout@v4
+        - uses: ./.github/actions/say-hello
+          with:
+          name: Sanchay
