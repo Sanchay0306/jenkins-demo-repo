@@ -8,4 +8,4 @@ jobs:
     environment: production
     steps:
       - name: Deploy step
-        run: echo "Deploying now..."
+        run: echo "Deploying now.."
