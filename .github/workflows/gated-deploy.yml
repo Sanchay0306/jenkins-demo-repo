@@ -5,7 +5,7 @@ on: workflow_dispatch
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: production
+    environment: Production
     steps:
       - name: Deploy step
         run: echo "Deploying now.."
